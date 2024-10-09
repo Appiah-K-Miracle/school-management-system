@@ -3,7 +3,7 @@ import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
 import prisma from "@/lib/prisma";
-import { ITEM_PER_PAGE } from "@/lib/settings";
+import { itemPerPage } from "@/lib/itemperpage";
 import { Parent, Prisma, Student } from "@prisma/client";
 import Image from "next/image";
 
@@ -108,8 +108,8 @@ const renderRow = (item: ParentList) => (
       include: {
         students: true,
       },
-      take: ITEM_PER_PAGE,
-      skip: ITEM_PER_PAGE * (p - 1),
+      take: itemPerPage,
+      skip: itemPerPage * (p - 1),
     }),
     prisma.parent.count({ where: query }),
   ]);
